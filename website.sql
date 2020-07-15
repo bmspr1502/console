@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 03:14 PM
+-- Generation Time: Jul 15, 2020 at 05:00 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -34,6 +34,16 @@ CREATE TABLE `images` (
   `image_text` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `image`, `image_text`) VALUES
+(8, 'Picture1.png', 'Sky'),
+(9, 'steth.png', 'stethoscope'),
+(17, 'monkey.JPG', 'monkey'),
+(18, 'modi.jpg', 'modiji');
+
 -- --------------------------------------------------------
 
 --
@@ -51,7 +61,7 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`id`, `header`, `body`) VALUES
-(1, 'Hello World this is pranav', 'I am changing the content');
+(1, 'Hello World 🌏 hi there', 'This is the body of the content');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +71,8 @@ INSERT INTO `page` (`id`, `header`, `body`) VALUES
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `image` (`image`);
 
 --
 -- Indexes for table `page`
@@ -77,7 +88,7 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `page`
