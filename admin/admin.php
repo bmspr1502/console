@@ -26,18 +26,53 @@ else{
 ?>
 <div class="container">
     <div class="form-group">
-    <form action="admin.php" method="post">
+    <form action="admin.php" method="post" enctype="multipart/form-data">
         <p><label for="header">Header: </label><input class="form-control" type="text" name="header" value="<?php echo $content["header"];?>"></p>
         <p><label for="body">Body: </label><textarea class="form-control" rows="5" name="body"><?php echo $content["body"];?></textarea></p>
+
+        <input type="hidden" name="size" value="1000000">
+        <input class="form-control" type="file" name="image">
+        <br>
+        <textarea
+                id="text"
+                cols="40"
+                rows="4"
+                name="image_text"
+                placeholder="Say something about this image..."></textarea>
+        <br>
         <input type="submit" name="submit" value="post">
     </form>
     </div>
+
     <?php
+    if(isset($_SESSION['delete_message'])){
+        echo $_SESSION['delete_message'];
+        unset($_SESSION['delete_message']);
+    }
+    ?>
+    <div class="card-group">
+    <?php
+    $imgres = mysqli_query($con, "SELECT * FROM images");
+    while ($row = mysqli_fetch_array($imgres)) {
+
+        echo "<div class='card' style=\"width:200px\">";
+        echo "<img class='card-img-top' src='images/".$row['image']."' >";
+        ?>
+        <div class='card-body'>
+        <form action="delete_pic.php" method="post">
+            <input type="hidden" name="image" value="<?php echo $row['image'];?>">
+            <input type="submit" name="delete" value="Delete pic">
+        </form>
+    <?php
+        echo "<h4 class='card-title'>".$row['image_text']."</h4></div>";
+        echo "</div>";
+    }
     mysqli_close($con);
     }
 
     }
     ?>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

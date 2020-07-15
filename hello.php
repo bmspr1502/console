@@ -26,6 +26,19 @@ if(!$con){
 <div class="card">
     <div class="card-header"><h1><?php echo $content['header'];?></h1></div>
     <div class="card-body text-monospace"><?php echo $content['body'];?></div>
+    <div class="card-body card-group">
+        <?php
+        $imgres = mysqli_query($con, "SELECT * FROM images");
+        while ($row = mysqli_fetch_array($imgres)) {
+
+        echo "<div class='card' style=\"width:200px\">";
+        echo "<div class='card-body'>";
+        echo "<img class='card-img-top' src='admin/images/".$row['image']."' >";
+            echo "<h4 class='card-title'>".$row['image_text']."</h4></div>";
+            echo "</div>";
+        }
+        ?>
+    </div>
 </div>
 </div>
 <?php
