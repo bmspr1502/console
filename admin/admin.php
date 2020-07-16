@@ -25,13 +25,15 @@ else{
     $content = mysqli_fetch_assoc($result);
 ?>
 <div class="container">
+    <a href="admin.php"><button type="button" class="btn btn-primary" > Click to refresh </button></a>
     <div class="form-group">
     <form action="admin.php" method="post" enctype="multipart/form-data">
         <p><label for="header">Header: </label><input class="form-control" type="text" name="header" value="<?php echo $content["header"];?>"></p>
         <p><label for="body">Body: </label><textarea class="form-control" rows="5" name="body"><?php echo $content["body"];?></textarea></p>
-
-        <input type="hidden" name="size" value="1000000">
-        <input class="form-control" type="file" name="image">
+        <br><label for="video">Video Id :</label><input class="form-control" type="text" name="video" value="<?php echo $content['video'];?>">
+        <br><label for="video_title">Video Title:</label><input class="form-control" type="text" name="video_title" value="<?php echo $content['video_title'];?>">
+        <br><input type="hidden" name="size" value="1000000">
+        <input class="form-control-file border" type="file" name="image">
         <br>
         <textarea
                 id="text"
