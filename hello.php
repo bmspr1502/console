@@ -26,6 +26,12 @@ if(!$con){
 <div class="card">
     <div class="card-header"><h1><?php echo $content['header'];?></h1></div>
     <div class="card-body text-monospace"><?php echo $content['body'];?></div>
+    <div class="card-body">
+        <div class="jumbotron">
+            <h3 class="card-title"><?php echo $content['video_title'];?></h3>
+            <iframe class="mx-auto" style="width:500px" height="300px" src="<?php echo $content['video'];?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
     <div class="card-body card-group">
         <?php
         $imgres = mysqli_query($con, "SELECT * FROM images");
