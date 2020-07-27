@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2020 at 03:27 AM
+-- Generation Time: Jul 27, 2020 at 07:21 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -40,10 +40,9 @@ CREATE TABLE `images` (
 
 INSERT INTO `images` (`id`, `image`, `image_text`) VALUES
 (9, 'steth.png', 'stethoscope'),
-(17, 'monkey.JPG', 'monkey'),
-(19, 'Picture2.png', 'wood'),
-(20, 'strategies-circle-big.jpg', 'strategies logo'),
-(21, '20191027201315_IMG_1261.JPG', 'firecrackers');
+(23, '00000IMG_00000_BURST20191017160212654_COVER.jpg', 'CEG'),
+(24, '20191027201340_IMG_1262.JPG', 'firecracker'),
+(25, 'IMG_20191027_193109 (1).jpg', 'diya');
 
 -- --------------------------------------------------------
 
@@ -64,7 +63,7 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`id`, `header`, `body`, `video`, `video_title`) VALUES
-(1, 'Hello World 🌏 hi there', 'This is where all the content of the website will be written<br>\r\nI guess you would like this page😁😀', 'https://www.youtube.com/embed/e-P5IFTqB98', 'Black Holes Explained – From Birth to Death');
+(1, 'Hello World 🌏 hi there', '<b>This is the body of the article</b><br>\r\n<i>U can format it using normal html tags</i><br>\r\n<marquee>I guess this stuff won\'t break it</marquee>', 'https://www.youtube.com/embed/h6fcK_fRYaI', 'The Egg - A Short Story -  Kurzgesagt – In a Nutshell');
 
 --
 -- Indexes for dumped tables
@@ -91,7 +90,7 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `page`
