@@ -25,7 +25,8 @@ else{
     $content = mysqli_fetch_assoc($result);
 ?>
 <div class="container">
-    <a href="admin.php"><button type="button" class="btn btn-primary" > Click to refresh </button></a>
+    <a href="admin.php"><button type="button" class="btn btn-outline-primary" > Click to reload the admin page </button></a>
+    <a href="../hello.php" target="_blank"><button type="button" class="btn btn-outline-primary float-right" > Open the user page </button></a>
     <div class="form-group">
     <form action="admin.php" method="post" enctype="multipart/form-data">
         <p><label for="header">Header: </label><input class="form-control" type="text" name="header" value="<?php echo $content["header"];?>"></p>

@@ -1,9 +1,33 @@
 <?php
 session_start();
-$con = mysqli_connect("localhost", "root", "", "website");
-if(!$con){
-    die("Connection not done" . mysqli_error($con));
-} else{
+if(isset($_POST['refresh'])){
+    unset($_COOKIE['content']);
+    unset($_COOKIE['images']);
+}
+if(isset($_COOKIE['content']) &&isset($_COOKIE['images'])){
+    $content = json_decode($_COOKIE['content'], true);
+    $images = json_decode($_COOKIE['images'], true);
+} else {
+    $con = mysqli_connect("localhost", "root", "", "website");
+    if (!$con) {
+        die("Connection not done" . mysqli_error($con));
+    } else {
+        $query = "SELECT * FROM page";
+        if ($result = mysqli_query($con, $query)) {
+            $content = mysqli_fetch_assoc($result);
+            setcookie('content', json_encode($content), time() + 86400);
+            $imgres = mysqli_query($con, "SELECT * FROM images");
+            $images = array();
+            while($imgrow = mysqli_fetch_array($imgres)){
+                array_push($images, $imgrow);
+            }
+            setcookie('images', json_encode($images), time() + 86400);
+        }
+    }
+    mysqli_close($con);
+    header('Location:hello.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +41,10 @@ if(!$con){
 </head>
 
 <body>
+<form action="hello.php" method="post">
+    <input class="float-right btn btn-outline-success" type="submit" name="refresh" value="Refresh cookies">
+</form>
 <div class="container">
-    <?php
-    $query = "SELECT * FROM page";
-    if($result = mysqli_query($con, $query)){
-        $content = mysqli_fetch_assoc($result);
-    ?>
 <div class="card">
     <div class="card-header"><h1><?php echo $content['header'];?></h1></div>
     <div class="card-body text-monospace"><?php echo $content['body'];?></div>
@@ -34,23 +56,19 @@ if(!$con){
     </div>
     <div class="card-body card-group">
         <?php
-        $imgres = mysqli_query($con, "SELECT * FROM images");
-        while ($row = mysqli_fetch_array($imgres)) {
+        foreach ($images as $img) {
 
         echo "<div class='card' style=\"width:200px\">";
         echo "<div class='card-body'>";
-        echo "<img class='card-img-top' src='admin/images/".$row['image']."' >";
-            echo "<h4 class='card-title'>".$row['image_text']."</h4></div>";
+        echo "<img class='card-img-top' src='admin/images/".$img['image']."' >";
+            echo "<h4 class='card-title'>".$img['image_text']."</h4></div>";
             echo "</div>";
         }
+
         ?>
     </div>
 </div>
 </div>
-<?php
-}
-    mysqli_close($con);
-}
-?>
+
 </body>
 </html>
