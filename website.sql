@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2020 at 07:21 PM
+-- Generation Time: Jul 29, 2020 at 08:36 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.3.14
 
@@ -40,9 +40,30 @@ CREATE TABLE `images` (
 
 INSERT INTO `images` (`id`, `image`, `image_text`) VALUES
 (9, 'steth.png', 'stethoscope'),
-(23, '00000IMG_00000_BURST20191017160212654_COVER.jpg', 'CEG'),
 (24, '20191027201340_IMG_1262.JPG', 'firecracker'),
 (25, 'IMG_20191027_193109 (1).jpg', 'diya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `info`
+--
+
+CREATE TABLE `info` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `content` text NOT NULL,
+  `visibility` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `info`
+--
+
+INSERT INTO `info` (`id`, `title`, `content`, `visibility`) VALUES
+(1, 'First content', 'content', 1),
+(2, 'Second content', 'Values', 1),
+(3, 'Temporary ', '<i>Run Run Run</i>', 1);
 
 -- --------------------------------------------------------
 
@@ -63,7 +84,7 @@ CREATE TABLE `page` (
 --
 
 INSERT INTO `page` (`id`, `header`, `body`, `video`, `video_title`) VALUES
-(1, 'Hello World 🌏 hi there', '<b>This is the body of the article</b><br>\r\n<i>U can format it using normal html tags</i><br>\r\n<marquee>I guess this stuff won\'t break it</marquee>', 'https://www.youtube.com/embed/h6fcK_fRYaI', 'The Egg - A Short Story -  Kurzgesagt – In a Nutshell');
+(1, 'Hello World 🌏 hi there', '<b>This is the body of the article</b><br>\r\n<i>U can format it using normal html tags</i><br>\r\n<marquee>I guess this stuff won\'t break it</marquee>\r\n<br>Hello world<br>\r\n', 'https://www.youtube.com/embed/h6fcK_fRYaI', 'The Egg - A Short Story -  Kurzgesagt – In a Nutshell');
 
 --
 -- Indexes for dumped tables
@@ -75,6 +96,12 @@ INSERT INTO `page` (`id`, `header`, `body`, `video`, `video_title`) VALUES
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`),
   ADD KEY `image` (`image`);
+
+--
+-- Indexes for table `info`
+--
+ALTER TABLE `info`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `page`
@@ -90,7 +117,13 @@ ALTER TABLE `page`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT for table `info`
+--
+ALTER TABLE `info`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `page`
