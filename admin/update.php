@@ -1,13 +1,14 @@
 <?php
 if(isset($_POST['submit'])) {
-    $header = $_POST['header'];
-    $body = $_POST['body'];
-    $video = $_POST['video'];
-    $video_title = $_POST['video_title'];
+
     $conwr = mysqli_connect("localhost", "root", "", "website");
     if(!$conwr){
         die("Connection not done" . mysqli_error($con));
     } else {
+        $header = mysqli_real_escape_string($conwr, $_POST['header']);
+        $body = mysqli_real_escape_string($conwr,$_POST['body']);
+        $video = mysqli_real_escape_string($conwr,$_POST['video']);
+        $video_title = mysqli_real_escape_string($conwr, $_POST['video_title']);
         $query = "UPDATE page 
                      SET header='" . $header."', 
                      body='" . $body."',
